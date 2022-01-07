@@ -7,7 +7,7 @@ Python script to create a project from a template given the following project pa
 * Project Codename (derived from project name if not given)
 * Org (derived from author if not given)
 
-The script will copy the template repository structure to a new folder located at `../{codename}`.
+The script will copy the template repository structure to a new folder located at `../{codename}` and format all the files with the correct parameters.
 
 ## Template structure
 
