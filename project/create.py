@@ -7,12 +7,14 @@ from .static_config import StaticConfig
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--no-interactive', action='store_true')
-    parser.add_argument('-author', type=str, help='Author of the project', default=None)
-    parser.add_argument('-project', type=str, help='Name of the project', default=None)
-    parser.add_argument('-codename', type=str, help='Short codename for project',
+    parser.add_argument('--no-interactive', action='store_true', 
+    			 help='Do not prompt user for parameters '
+    			      '(all parameters must be provided via commandline)')
+    parser.add_argument('-author', type=str, help='Author of the project (required)', default=None)
+    parser.add_argument('-project', type=str, help='Name of the project (required)', default=None)
+    parser.add_argument('-codename', type=str, help='Short codename for project (optional)',
                         default=None)
-    parser.add_argument('-org', type=str, help='Organisation responsible for the project', 
+    parser.add_argument('-org', type=str, help='Organisation responsible for the project (optional)', 
                         default=None)
     args = parser.parse_args()
     return {
@@ -61,6 +63,12 @@ def extract_code(s):
 
 
 def clean_params(params):
+
+    all_needed_params = list(StaticConfig.REQUIRED_PARAMS)
+    if any(param not in all_needed_params for param in params):
+        missing_params = set(all_needed_params) - set(params)
+        raise ValueError(f'Necessary Parameters Missing: {missing_params}')
+
     for param in params:
         if isinstance(params[param], str):
             params[param] = params[param].strip()
