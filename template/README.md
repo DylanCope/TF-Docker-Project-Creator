@@ -23,7 +23,7 @@
 
 ### Setting up the container
 
-Run the `docker_build.sh` script. Note that this extends from a GPU-ready Tensorflow docker image and therefore you must make sure you have [configured your docker correctly](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html). If you do not have a CUDA-compatibile GPU then you should remote the `-gpu` tag from the Dockerfile.
+Run the `docker_build.sh` script. Note that this extends from a GPU-ready Tensorflow docker image and therefore you must make sure you have [configured your docker correctly](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html). If you do not have a CUDA-compatibile GPU then you should remove the `-gpu` tag from the Dockerfile.
 
 ## Running the code
 
