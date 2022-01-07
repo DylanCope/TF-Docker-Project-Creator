@@ -65,8 +65,8 @@ def extract_code(s):
 def clean_params(params):
 
     all_needed_params = list(StaticConfig.REQUIRED_PARAMS)
-    if any(param not in all_needed_params for param in params):
-        missing_params = set(all_needed_params) - set(params)
+    missing_params = set(all_needed_params) - set(params)
+    if missing_params:
         raise ValueError(f'Necessary Parameters Missing: {missing_params}')
 
     for param in params:
@@ -97,7 +97,7 @@ def copy_and_format(template_dir, target_dir, project_params):
         else:
             name = project_params['codename']
         
-        target_path = target_dir / temp_path.name
+        target_path = target_dir / name
 
         if temp_path.is_dir():
             copy_and_format(temp_path, target_path, project_params)
@@ -118,8 +118,10 @@ def copy_and_format(template_dir, target_dir, project_params):
 
 def create_project(project_params):
     print('Creating project with the following parameters:')
+    user_params = list(StaticConfig.REQUIRED_PARAMS) + \
+                  list(StaticConfig.OPTIONAL_PARAMS)
     for param in project_params:
-    	if param in StaticConfig.REQUIRED_PARAMS or StaticConfig.OPTIONAL_PARAMS:
+    	if param in user_params:
             print(f'{param}: {project_params[param]}')
 
     
