@@ -12,7 +12,7 @@
 ├── data                    # Contains data files
 ├── {codename}{spaces}# Python module 
 ├── notebooks               # Jupyter notebooks
-├── docker-requirements.txt # pip requirements for building docker environment
+├── requirements.txt        # pip requirements for building docker environment
 ├── Dockerfile              # Extends tensorflow/tensorflow:2.7.0-gpu-jupyter
 ├── docker_build.sh         # Script for building container
 ├── docker_run.sh           # Script for starting container and exposing Jupyter to localhost
